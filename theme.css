@@ -6,9 +6,14 @@
 @def my_selected_bgcolor #04395E;
 
 QWidget {
-    /*border: 1px solid red;*/
+    color: #cccccc;
+    /*background: #252526;*/
 }
 
+/*
+AboutDialog > QGroupBox > QWidget {
+    background: transparent;
+}*/
 
 buddy_label_t,
 ui_label_t,
@@ -35,7 +40,10 @@ QRadioButton {
     font-family: ${my_ui_font};
 }
 
-QWidget[objectName^="qt_scrollarea_viewport"]
+WaitDialog ui_label_t {
+    font-size: 10px;
+}
+
 text_area_t,
 QStatusBar QLabel,
 QTextEdit,
@@ -45,10 +53,32 @@ CLIWidget QLineEdit {
     font-size: 10pt;
 }
 
-/* Common properties */
-QWidget {
-    background-color: #252526;
+tchooser_table_widget_t,
+text_area_t,
+IDAMainWindow,
+QDialog,
+IDADockWidget QWidget,
+ida_form_widget_t
+{
+    background: #252526;
     color: #cccccc;
+}
+
+
+text_area_t > QWidget,
+chooser_widget_container_t,
+text_area_container_t {
+    background: transparent;
+}
+
+#qt_scrollarea_vcontainer,
+#qt_scrollarea_hcontainer
+{
+    background: transparent;
+}
+
+ColorsOptionsDialog {
+    background-color: #252526;
 }
 
 type_editor_t>QWidget {
@@ -378,10 +408,13 @@ QComboBox QLineEdit:focus {
 QComboBox:drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
-    border: none;
     width: 20px;
+    border: 3px;
 }
 
+QComboBox:down-arrow {
+    image: url("$RELPATH/icons/drop-arrow.png");
+}
 
 QComboBox>QLineEdit {
     min-height: default;
@@ -461,7 +494,8 @@ DockWidgetTitle {
 }
 
 DockAreaDragTitle {
-    border: 0;
+    border: none;
+    background: #2D2D2D;
 }
 
 DockWidgetTitle[active="true"] {
