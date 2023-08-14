@@ -53,6 +53,7 @@ CLIWidget QLineEdit {
     font-size: 10pt;
 }
 
+chooser_dirtree_widget_t,
 tchooser_table_widget_t,
 text_area_t,
 IDAMainWindow,
