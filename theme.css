@@ -58,6 +58,9 @@ tchooser_table_widget_t,
 text_area_t,
 IDAMainWindow,
 QDialog,
+QListWidget,
+QListView,
+QStackedWidget,
 IDADockWidget QWidget,
 ida_form_widget_t
 {
@@ -664,6 +667,7 @@ CLIWidget QPushButton:focus {
 }
 
 CustomIDAMemo {
+    qproperty-caret: white;
     /* current line background overlay */
     qproperty-line-bg-highlight: #474747;
     qproperty-line-bg-highlight-2: #E06C75;
