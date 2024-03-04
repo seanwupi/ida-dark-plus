@@ -1,6 +1,6 @@
 @importtheme "_base";
 
-@def my_ui_font "Segoe UI Semibold";
+@def my_ui_font "Segoe UI";
 @def my_code_font "Cascadia Mono";
 @def my_selected_color #007FD4;
 @def my_selected_bgcolor #04395E;
@@ -266,8 +266,8 @@ DockTabBar {
 }
 
 DockTabBar:tab {
-    max-width: 120px;
-    min-width: 120px;
+    max-width: 240px;
+    min-width: 240px;
     padding-right: 5px;
 }
 
@@ -285,40 +285,27 @@ QMenuBar:active {
 QMenuBar:item {
     background: transparent;
     color: #cccccc;
-    border-radius: 5px;
     padding: 5px 8px;
 }
 
 QMenu {
     /*background-color: #252526;*/
     background: rgba(128, 128, 128, 0.1);
-    padding: 6px 0px;
+    padding: 4px 3px;
     border: 1px solid #454545;
-    border-radius: 2px;
-    /* workaround to QTBUG-86754 */
-    icon-size: 0px;
-}
-
-QMenu:right-arrow {
-    image: url("$RELPATH/icons/menu.png");
-    width: 10px;
-    height: 10px;
-    margin: 5px 15px 5px 10px;
 }
 
 QMenu::item {
-    border-radius: 5px;
     color: #cccccc;
-    padding: 6px 25px;
-    margin: 0px 5px;
+    padding: 6px 15px;
+}
+
+QMenu::icon {
+    padding-left: 20px;
 }
 
 QMenu::item:disabled {
     color: #5F5F5F;
-}
-
-QMenu::icon {
-    padding-left: 13px;
 }
 
 QMenu:item:selected {
@@ -549,12 +536,12 @@ QScrollBar {
 
 QScrollBar:horizontal {
     border-top-width: 1px;
-    height: 12px;
+    height: 20px;
 }
 
 QScrollBar:vertical {
     border-left-width: 1px;
-    width: 12px;
+    width: 20px;
 }
 
 QScrollBar:sub-line {
@@ -584,11 +571,11 @@ QScrollBar:handle {
 }
 
 QScrollBar:handle:vertical {
-    min-height: 30px;
+    min-height: 50px;
 }
 
 QScrollBar:handle:horizontal {
-    min-width: 30px;
+    min-width: 50px;
 }
 
 QScrollBar:handle:hover {
@@ -614,8 +601,6 @@ QGroupBox:title {
 }
 
 CLIWidget QGroupBox {
-    /*background-image: url("$RELPATH/icons/cliborder.png");*/
-    background-repeat: repeat-x;
     background-color: #1E1E1E;
     margin: 0px;
     margin-bottom: -1px;
