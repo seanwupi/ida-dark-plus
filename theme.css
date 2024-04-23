@@ -10,11 +10,6 @@ QWidget {
     /*background: #252526;*/
 }
 
-/*
-AboutDialog > QGroupBox > QWidget {
-    background: transparent;
-}*/
-
 buddy_label_t,
 ui_label_t,
 IDAMainWindow,
@@ -36,12 +31,14 @@ QMenuBar,
 QSpinBox,
 QMenu,
 QStatusBar,
+WaitDialog,
 QRadioButton {
     font-family: ${my_ui_font};
+    font-size: 10pt;
 }
 
-WaitDialog ui_label_t {
-    font-size: 10px;
+WaitDialog {
+    font-size: 16pt; /* Make dialog wider to avoid truncated text*/
 }
 
 text_area_t,
@@ -197,6 +194,9 @@ QTreeView QHeaderView:section {
     padding: 4px 0px 4px 5px;
 }
 
+QTreeView QHeaderView:section:!first {
+    border-left: 2px solid #252526;
+}
 
 QLineEdit {
     /* Single line edit */
@@ -271,6 +271,10 @@ DockTabBar:tab {
     padding-right: 5px;
 }
 
+QToolButton {
+    background: #252526;
+}
+
 QMenuBar {
     /* Menu bar & items */
     background-color: #3c3c3c;
@@ -291,17 +295,22 @@ QMenuBar:item {
 QMenu {
     /*background-color: #252526;*/
     background: rgba(128, 128, 128, 0.1);
-    padding: 4px 3px;
+    padding: 4px 0px;
     border: 1px solid #454545;
+    icon-size: 0px;
+    border-radius: 2px;
 }
 
 QMenu::item {
+    background-color: transparent;
+    border-radius: 2px;
+    margin: 1px 4px;
     color: #cccccc;
-    padding: 6px 15px;
+    padding: 5px 25px 5px 30px;
 }
 
 QMenu::icon {
-    padding-left: 20px;
+    padding-left: 16px;
 }
 
 QMenu::item:disabled {
@@ -321,7 +330,7 @@ QMenu:separator {
 
 /* Table and headers */
 QTableView {
-    /*background-color: #252526;*/
+    background-color: #222222;
     outline: none;
     selection-color: #ffffff;
     selection-background-color: #04395e;
@@ -338,12 +347,11 @@ QTableView QHeaderView:section {
     background-color: #1e1e1e;
     border: none;
     font-weight: bold;
-    padding: 7px 0px 1px 5px;
+    padding: 4px 5px 4px 5px;
 }
 
-QTableView QTableCornerButton:section {
-    background: #252526;
-    border: 0px outset #000;
+QTableView QHeaderView:section:!first {
+    border-left: 2px solid #252526;
 }
 
 QListView {
@@ -509,26 +517,28 @@ DockWidgetTitle QPushButton:hover {
 
 DockWidgetTitle QPushButton[toolTip="Fullscreen"] {
     image: url("$RELPATH/icons/fullscreen.png");
+    border: none;
     color: #C1C1C1;
     qproperty-icon: url("$RELPATH/icons/blank.png");
 }
 
 DockWidgetTitle QPushButton[toolTip="Float"] {
-    background-color: transparent;
     image: url("$RELPATH/icons/float.png");
+    border: none;
     color: #C1C1C1;
     qproperty-icon: url("$RELPATH/icons/blank.png");
 }
 
 DockWidgetTitle QPushButton[toolTip="Close"] {
     image: url("$RELPATH/icons/close.png");
+    border: none;
     color: #C1C1C1;
     qproperty-icon: url("$RELPATH/icons/blank.png");
 }
 
 QScrollBar {
     /* Scrollbar */
-    background-color: transparent;
+    background-color: #222222;
     border: 0px solid #393939;
     margin: 0;
     padding: 0;
@@ -555,13 +565,13 @@ QScrollBar:add-line {
 }
 
 QScrollBar:add-page {
-    background: none;
+    background: #222222;
     width: 0;
     height: 0;
 }
 
 QScrollBar:sub-page {
-    background: none;
+    background: #222222;
     width: 0;
     height: 0;
 }
@@ -600,6 +610,8 @@ QGroupBox:title {
     top: 4px;
 }
 
+
+/* CLI & Output panel settings */
 CLIWidget QGroupBox {
     background-color: #1E1E1E;
     margin: 0px;
@@ -611,58 +623,92 @@ CLIWidget QGroupBox {
 
 CLIWidget QLineEdit {
     margin: 0px;
-    margin-top: 1px;
-    padding: 2px 1px;
+    padding-top: 5px;
     background-color: #1E1E1E;
     background-clip: border-box;
-    border: none;
+    border: 0px solid transparent;
 }
 
-CLIWidget QLineEdit:focus {
+QWidget[windowTitle="Output"]>QWidget>QAbstractScrollArea{
+    border-bottom: 1px solid #444444;
+}
+
+QWidget[windowTitle="Output"] QGroupBox {
+    spacing: 0px;
+    padding: 0px;
+}
+QWidget[windowTitle="Output"] QLineEdit:focus {
     border: none;
+    background-color: #000000;
 }
 
 CLIWidget QPushButton {
     border: none;
-    padding: 3px 9px 4px 0px;
+    padding: 3px 10px 4px 10px;
+    min-width: 90px;
     margin: 0px;
     margin-left: 0px;
     background-clip: border-box;
-    text-align: right;
+    text-align: center;
     font-size: 10pt;
     color: #C5C5C5;
-
     background-color: #1E1E1E;
-    background-image: url("$RELPATH/icons/prompt.png");
-    background-size: 2px 2px;
-    background-position: right center;
-    background-repeat: no-repeat;
+    font-family: ${my_code_font};
 }
 
 CLIWidget QPushButton:hover {
     background-color: rgba(255, 255, 255, 0.1);
-    background-image: url("$RELPATH/icons/prompt.png");
-    background-size: 2px 2px;
-    background-position: right center;
-    background-repeat: no-repeat;
 }
 
 CLIWidget QPushButton:focus {
     border: none;
 }
 
+
+
+DockWidgetTitle[toolTip="Output"] {
+    border: none;
+    border-top: 1px solid #414141;
+    border-bottom: 2px solid #000000;
+    background-color: #1e1e1e;
+    padding: 0;
+    padding-left: -20px;
+
+}
+
+DockWidgetTitle[toolTip="Output"]>QWidget[height="16"] {
+    border: none;
+    margin: 0px;
+    max-width: 0px;
+    min-width: 0px;
+    background-color: transparent;
+}
+
+DockWidgetTitle[toolTip="Output"]>QWidget[text="Output"] {
+    color: #e7e7e7;
+    padding: 0px 6px;
+    text-transform: uppercase;
+    min-height: 30px;
+    margin: 0;
+    font-family: ${my_code_font};
+    font-size: 14px;
+    background-color: transparent;
+}
+
+
+
 CustomIDAMemo {
     qproperty-caret: white;
     /* current line background overlay */
-    qproperty-line-bg-highlight: #474747;
-    qproperty-line-bg-highlight-2: #E06C75;
-    qproperty-line-bg-highlight-3: #9bc379;
-    qproperty-line-bg-highlight-4: #e5c7be;
-    qproperty-line-bg-highlight-5: #61afef;
-    qproperty-line-bg-highlight-6: #c678dd;
-    qproperty-line-bg-highlight-7: #56b6c2;
-    qproperty-line-bg-highlight-8: #abb2bf;
-    qproperty-line-bgovl-current-line: rgba(80, 80, 80, 0.25);
+    qproperty-line-bg-highlight: rgba(100, 100, 100, 0.8);
+    qproperty-line-bg-highlight-2: rgba(255, 100, 100, 0.8);
+    qproperty-line-bg-highlight-3: rgba(100, 255, 175, 0.8);
+    qproperty-line-bg-highlight-4: rgba(100, 100, 255, 0.8);
+    qproperty-line-bg-highlight-5: rgba(178, 90, 255, 0.8);
+    qproperty-line-bg-highlight-6: rgba(100, 255, 255, 0.8);
+    qproperty-line-bg-highlight-7: rgba(255, 100, 255, 0.8);
+    qproperty-line-bg-highlight-8: rgba(255, 255, 100, 0.8);
+    qproperty-line-bgovl-current-line: rgba(80, 80, 80, 0.2);
     qproperty-line-fg-default: #d8d8d8;
     qproperty-line-fg-regular-comment: #57a64a;
     qproperty-line-fg-repeatable-comment: #808080;
@@ -715,20 +761,22 @@ CustomIDAMemo {
     qproperty-line-bg-bpt-enabled: #703434;
     qproperty-line-bg-bpt-disabled: #375437;
     qproperty-line-bg-bpt-unavailable: #808080;
-    qproperty-graph-bg-top: #333334;
-    qproperty-graph-bg-bottom: #333334;
-    qproperty-graph-node-title-normal: #757575;
-    qproperty-graph-node-title-selected: #000000;
-    qproperty-graph-node-title-current: #007acc;
+    qproperty-graph-bg-top: #3e3e3e;
+    qproperty-graph-bg-bottom: #3e3e3e;
+    qproperty-graph-node-title-normal: #444444;
+    qproperty-graph-node-title-selected: #888888;
+    qproperty-graph-node-title-current: #cccccc;
     qproperty-graph-node-frame-group: #9cdcfe;
-    qproperty-graph-node-shadow: #151515;
+    qproperty-graph-node-shadow: transparent;
     qproperty-graph-node-high1: #d8d8d8;
     qproperty-graph-node-high2: #b8d7a3;
     qproperty-graph-node-foreign: #d85050;
+    qproperty-graph-node-frame-selected: white;
     qproperty-graph-edge-normal: #0883d4;
     qproperty-graph-edge-yes: #099b09;
     qproperty-graph-edge-no: #f31e4c;
     qproperty-graph-edge-high: #ff00ff;
+    qproperty-graph-edge-selected: red;
     qproperty-graph-edge-current: #00ffff;
     qproperty-line-fg-patched-bytes: #d85050;
     qproperty-line-fg-unsaved-changes: #ecdcaa;
@@ -820,6 +868,14 @@ CustomIDAMemo[hints="true"] {
     qproperty-line-bg-default: #333333;
 }
 
+GraphMiniView
+{
+
+    qproperty-fog        : rgba(0, 0, 0, 0.3);
+    qproperty-crosshairs : rgba(255, 255, 255, 0.5);
+}
+
+
 
 QSplitter {
     background: #252526;
@@ -864,34 +920,6 @@ QToolTip {
 
 
 /* Special widget settings */
-
-DockWidgetTitle[toolTip="Output"] {
-    border: none;
-    border-top: 1px solid #414141;
-    border-bottom: 2px solid #000000;
-    background-color: #1e1e1e;
-    padding: 0;
-    padding-left: -20px;
-
-}
-
-DockWidgetTitle[toolTip="Output"]>QWidget[height="16"] {
-    border: none;
-    margin: 0px;
-    max-width: 0px;
-    min-width: 0px;
-    background-color: transparent;
-}
-
-
-DockWidgetTitle[toolTip="Output"]>QWidget[text="Output"] {
-    color: #e7e7e7;
-    padding: 0px 6px;
-    text-transform: uppercase;
-    border-bottom: 1px solid #e7e7e7;
-    min-height: 30px;
-    margin: 0;
-}
 
 TChooser>QDialogButtonBox>QPushButton{
     margin-bottom: 10px;
