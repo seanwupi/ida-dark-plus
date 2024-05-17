@@ -297,7 +297,7 @@ QMenu {
     background: rgba(128, 128, 128, 0.1);
     padding: 4px 0px;
     border: 1px solid #454545;
-    icon-size: 0px;
+    icon-size: 10px;
     border-radius: 2px;
 }
 
@@ -306,7 +306,7 @@ QMenu::item {
     border-radius: 2px;
     margin: 1px 4px;
     color: #cccccc;
-    padding: 5px 25px 5px 30px;
+    padding: 5px 25px 5px 20px;
 }
 
 QMenu::icon {
@@ -319,6 +319,11 @@ QMenu::item:disabled {
 
 QMenu:item:selected {
     background-color: #04395e;
+}
+
+QMenu::indicator {
+    left: 10px;
+    width: 10px;
 }
 
 QMenu:separator {
